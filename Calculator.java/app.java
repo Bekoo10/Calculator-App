@@ -1,66 +1,69 @@
-package Hesapmakinesi;
+package Calculator;
 
 import java.util.Scanner;
 
-public class arayüz {
-	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
-		İslemler nesne = new İslemler();
-		boolean kontrol = false;
-		System.out.println("*****Hesap Makinesine hoşgeldiniz*****\n");
+public class Interface {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Operations operations = new Operations();
+        boolean exit = false;
+        System.out.println("*****Welcome to the Calculator*****\n");
 
-		while (kontrol == false) {
-			System.out.print("\nProgramdan çıkmak istiyorsanız 'Exit' yazabilirsiniz."
-					+ "\nLütfen yapmak istediğiniz işlemi giriniz: ");
+        while (!exit) {
+            System.out.print("\nYou can type 'Exit' if you want to exit the program."
+                    + "\nPlease enter the operation you want to perform: ");
 
-			String islem = scanner.nextLine().trim();
+            String operation = scanner.nextLine().trim();
 
-			if (islem.equalsIgnoreCase("Exit")) {
-				System.out.println("\nProgramdan çıkış yapılmıştır.");
-				kontrol = true;
-				break;
-			}
+            if (operation.equalsIgnoreCase("Exit")) {
+                System.out.println("\nExiting the program.");
+                exit = true;
+                break;
+            }
 
-			
-			int OperatörIndeksi = -1;
-			char[] operatörler = { '+', '-', '*', '/', '^' };
+            int operatorIndex = -1;
+            char[] operators = { '+', '-', '*', '/', '^' };
 
-			
-			for (char op : operatörler) {
-				OperatörIndeksi = islem.indexOf(op);
-				if (OperatörIndeksi != -1) {
-					break;
-				}
-			}
+            for (char op : operators) {
+                operatorIndex = operation.indexOf(op);
+                if (operatorIndex != -1) {
+                    break;
+                }
+            }
 
-			
-			if (OperatörIndeksi == -1) {
-				System.out.println("\nYanlış bir işlem yaptınız, lütfen tekrar deneyiniz.");
-				continue;
-			}
+            if (operatorIndex == -1) {
+                System.out.println("\nYou have made an invalid operation, please try again.");
+                continue;
+            }
 
-			String sayi1 = islem.substring(0, OperatörIndeksi).trim();
-			String operatör = islem.substring(OperatörIndeksi, OperatörIndeksi + 1);
-			String sayi2 = islem.substring(OperatörIndeksi + 1).trim();
+            String number1 = operation.substring(0, operatorIndex).trim();
+            String operator = operation.substring(operatorIndex, operatorIndex + 1);
+            String number2 = operation.substring(operatorIndex + 1).trim();
 
-			if (operatör.equals("+")) {
-				System.out.println("\nGirmiş olduğunuz işlemin sonucu: " + nesne.Toplama(sayi1, sayi2));
-			} else if (operatör.equals("-")) {
-				System.out.println("\nGirmiş olduğunuz işlemin sonucu: " + nesne.Cikarma(sayi1, sayi2));
-			} else if (operatör.equals("*")) {
-				System.out.println("\nGirmiş olduğunuz işlemin sonucu: " + nesne.Carpma(sayi1, sayi2));
-			} else if (operatör.equals("/")) {
-				if (sayi2.equals("0")) {
-					System.out.println("\n0 değerine bölünemez.");
-				} else {
-					System.out.println("\nGirmiş olduğunuz işlemin sonucu: " + nesne.Bolme(sayi1, sayi2));
-				}
-			} else if (operatör.equals("^")) {
-				System.out.println("\nGirmiş olduğunuz işlemin sonucu: " + nesne.Us(sayi1, sayi2));
-			} else {
-				System.out.println("\nYanlış bir işlem yaptınız, lütfen tekrar deneyiniz.");
-			}
-		}
+            switch (operator) {
+                case "+":
+                    System.out.println("\nThe result of your operation is: " + operations.add(number1, number2));
+                    break;
+                case "-":
+                    System.out.println("\nThe result of your operation is: " + operations.subtract(number1, number2));
+                    break;
+                case "*":
+                    System.out.println("\nThe result of your operation is: " + operations.multiply(number1, number2));
+                    break;
+                case "/":
+                    if (number2.equals("0")) {
+                        System.out.println("\nCannot divide by 0.");
+                    } else {
+                        System.out.println("\nThe result of your operation is: " + operations.divide(number1, number2));
+                    }
+                    break;
+                case "^":
+                    System.out.println("\nThe result of your operation is: " + operations.power(number1, number2));
+                    break;
+                default:
+                    System.out.println("\nYou have made an invalid operation, please try again.");
+            }
+        }
 
-	}
+    }
 }
