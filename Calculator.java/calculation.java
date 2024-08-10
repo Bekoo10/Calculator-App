@@ -1,39 +1,38 @@
-package Hesapmakinesi;
+package Calculator;
 
-public class İslemler {
-	protected static double Toplama(String a, String b) {
-		Double sayi1 = Double.valueOf(a);
-		Double sayi2 = Double.valueOf(b);
-		double toplam = sayi1 + sayi2;
-		return toplam;
-	}
+public class Operations {
+    protected static double add(String a, String b) {
+        Double number1 = Double.valueOf(a);
+        Double number2 = Double.valueOf(b);
+        double sum = number1 + number2;
+        return sum;
+    }
 
-	protected static Double Cikarma(String a, String b) {
-		Double sayi1 = Double.valueOf(a);
-		Double sayi2 = Double.valueOf(b);
-		Double fark = sayi1 - sayi2;
-		return fark;
-	}
+    protected static Double subtract(String a, String b) {
+        Double number1 = Double.valueOf(a);
+        Double number2 = Double.valueOf(b);
+        Double difference = number1 - number2;
+        return difference;
+    }
 
-	protected static Double Bolme(String a, String b) {
-		Double sayi1 = Double.valueOf(a);
-		Double sayi2 = Double.valueOf(b);
-		Double bolum = sayi1 / sayi2;
-		return bolum;
-	}
+    protected static Double divide(String a, String b) {
+        Double number1 = Double.valueOf(a);
+        Double number2 = Double.valueOf(b);
+        Double quotient = number1 / number2;
+        return quotient;
+    }
 
-	protected static Double Carpma(String a, String b) {
-		Double sayi1 = Double.valueOf(a);
-		Double sayi2 = Double.valueOf(b);
-		Double carpım = sayi1 * sayi2;
-		return carpım;
-	}
+    protected static Double multiply(String a, String b) {
+        Double number1 = Double.valueOf(a);
+        Double number2 = Double.valueOf(b);
+        Double product = number1 * number2;
+        return product;
+    }
 
-	protected static Double Us(String a, String b) {
-		Double sayi1 = Double.valueOf(a);
-		Double sayi2 = Double.valueOf(b);
-		Double us = Math.pow(sayi1, sayi2);
-		return us;
-	}
-
+    protected static Double power(String a, String b) {
+        Double number1 = Double.valueOf(a);
+        Double number2 = Double.valueOf(b);
+        Double result = Math.pow(number1, number2);
+        return result;
+    }
 }
